@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import 'antd-mobile/dist/antd-mobile.css';
 import App from './component/App';
 // import * as serviceWorker from './serviceWorker';
 
@@ -13,6 +14,7 @@ import {BrowserRouter, Route, Redirect, Switch} from 'react-router-dom';
 
 import Login from  './container/Login'
 import Register from './container/Register'
+import AuthRoute from "./component/AuthRoute";
 
 const store = createStore(reducers, compose(
     applyMiddleware(thunk)
@@ -22,6 +24,7 @@ ReactDOM.render(
     (<Provider store={store}>
         <BrowserRouter>
             <div>
+                <AuthRoute/>
                 <Route path='/login' component={Login} ></Route>
                 <Route path='/register' component={Register} ></Route>
             </div>

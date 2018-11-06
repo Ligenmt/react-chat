@@ -27,5 +27,25 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "babel": {
+    "presets": [
+      "react-app"
+    ],
+    "plugins": [
+      [
+        "import",
+        {
+          "libraryName": "antd",
+          "style": true,
+          "javascriptEnabled": true
+        }
+      ],
+      "transform-decorators-legacy"
+    ]
+  },
+  "proxy": "http://localhost:9000",
+  "devDependencies": {
+    "babel-plugin-transform-decorators-legacy": "^1.3.5"
+  }
 }
