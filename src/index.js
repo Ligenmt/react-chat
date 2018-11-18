@@ -20,6 +20,10 @@ const store = createStore(reducers, compose(
     applyMiddleware(thunk)
 ))
 
+const Test = () => {
+    return <h2>Test页面</h2>
+}
+
 ReactDOM.render(
     (<Provider store={store}>
         <BrowserRouter>
@@ -27,6 +31,7 @@ ReactDOM.render(
                 <AuthRoute/>
                 <Route path='/login' component={Login} ></Route>
                 <Route path='/register' component={Register} ></Route>
+                <Route path='/test' component={Test} ></Route>
             </div>
         </BrowserRouter>
     </Provider>), document.getElementById('root')
