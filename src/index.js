@@ -16,10 +16,15 @@ import Login from  './container/Login'
 import Register from './container/Register'
 import AuthRoute from "./component/AuthRoute";
 
+//google 调试用扩展
+const reduxDevtools = window.devToolsExtension ? window.devToolsExtension : ()=>{}
+console.log(reduxDevtools)
+//初始化状态
 const store = createStore(reducers, compose(
-    applyMiddleware(thunk)
+    applyMiddleware(thunk),
+    window.devToolsExtension ? window.devToolsExtension() : ()=>{}
 ))
-
+// console.log(store.getState())
 const Test = () => {
     return <h2>Test页面</h2>
 }
