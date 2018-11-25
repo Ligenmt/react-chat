@@ -1,8 +1,14 @@
 import React, {Component} from 'react'
 import Axios from 'axios'
 import {withRouter} from 'react-router-dom'
+import {connect} from 'react-redux'
+import {loadData} from '../../redux/user.redux'
 
 @withRouter //AuthRoute没有<Route>，没有props.history
+@connect(
+    null,
+    {loadData},
+)
 class AuthRoute extends Component {
 
     componentDidMount() {
@@ -16,6 +22,7 @@ class AuthRoute extends Component {
         Axios.get('/user/info').then((res) => {
             if (res.data.code == 0) {
                 //已登录
+                this.props.loadData(res.data.data)
             } else {
                 //未登录
                 this.props.history.push('/login')

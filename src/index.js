@@ -18,8 +18,7 @@ import AuthRoute from "./component/AuthRoute";
 
 //google 调试用扩展
 const reduxDevtools = window.devToolsExtension ? window.devToolsExtension : ()=>{}
-console.log(reduxDevtools)
-//初始化状态
+//初始化reducer状态
 const store = createStore(reducers, compose(
     applyMiddleware(thunk),
     window.devToolsExtension ? window.devToolsExtension() : ()=>{}
@@ -28,7 +27,7 @@ const store = createStore(reducers, compose(
 const Test = () => {
     return <h2>Test页面</h2>
 }
-
+//Provider在最外层传入store
 ReactDOM.render(
     (<Provider store={store}>
         <BrowserRouter>

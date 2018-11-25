@@ -1,13 +1,15 @@
 import React, {Component} from 'react'
 import Logo from '../../component/Logo'
 import {List,InputItem,WingBlank,Radio,WhiteSpace,Button} from 'antd-mobile'
+import {Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {register} from "../../redux/user.redux"
 
-@connect(
-    state=>state.user,
-    {register}
-)
+//state action
+const mapState2Props = (state) => state.user
+const actionCreators = { register }
+
+@connect(mapState2Props, actionCreators)
 class Register extends Component {
 
     constructor(props) {
@@ -22,6 +24,7 @@ class Register extends Component {
         const RadioItem = Radio.RadioItem
         return (
             <div>
+                {this.props.redirectTo ? <Redirect to={this.props.redirectTo}/> : null}
                 <Logo></Logo>
                 <h2>注册页面</h2>
                 <WingBlank>
@@ -57,5 +60,5 @@ class Register extends Component {
         console.log('register')
     }
 }
-
+// Register = connect()(Register)
 export default Register;

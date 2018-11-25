@@ -1,12 +1,68 @@
 const express = require('express')
 const Router = express.Router()
+const model = require('./model')
+
+const User = model.getModel('user')
+
+Router.get('/list', (req, res) => {
+    User.find({}, function (err, doc) {
+        return res.json(
+            {
+                code: 0,
+                data: doc
+            })
+    })
+})
+
+Router.post('/login', (req, res) => {
+    const {user, pwd} = req.body
+    User.findOne({user: user, pwd: pwd}, {pwd: 0}, function (err, doc) {
+        if (doc) {
+            res.cookie('userId', doc['_id'])
+            console.log("info", doc)
+            return res.json({code: 0, msg: "success", data: doc})
+        }
+        return res.json({code: 1, msg: "用户名密码错误"})
+    })
+})
 
 Router.get('/info', (req, res) => {
-    return res.json({code: 0})
+    const {userId} = req.cookies
+    if (!userId) {
+        return res.json({code: 1})
+    }
+    User.findOne({_id: userId}, {pwd: 0}, function (err, doc) {
+        if (err) {
+            return res.json({code: 5})
+        }
+        if (doc) {
+            console.log("info", doc)
+            return res.json({code: 0, data: doc})
+        }
+    })
 })
 
 Router.post('/register', (req, res) => {
-    return res.json({code: 0})
+    console.log(req.body)
+    const {user, pwd, type} = req.body
+    User.findOne({user: user}, function (err, doc) {
+        if (doc) {
+            return res.json({code: 1, msg: "用户名重复"})
+        }
+        User.create({user, pwd, type}, function (err, doc) {
+            if (err) {
+                return res.json({code: 1, msg: "error"})
+            }
+            User.findOne({user: user}, {pwd: 0}, function (err, doc) {
+                if (err) {
+                    return res.json({code: 5})
+                }
+                res.cookie('userId', doc['_id'])
+                return res.json({code: 0, data: doc})
+            })
+        })
+    })
+
 })
 
 module.exports = Router
