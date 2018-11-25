@@ -3,6 +3,7 @@ import {getRedirectPath} from "../util";
 
 const REGISTER_SUCCESS = 'REGISTER_SUCCESS'
 const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
+const UPDATE_SUCCESS = 'UPDATE_SUCCESS'
 const ERROR_MSG = 'ERR_MSG'
 const LOAD_DATA = 'LOAD_DATA'
 
@@ -19,6 +20,8 @@ export function user(state=initState, action) {
             return {...state, msg:'', redirectTo: getRedirectPath(action.payload), isAuth:true, ...action.payload}
         case LOGIN_SUCCESS:
             return {...state, msg:'', redirectTo: getRedirectPath(action.payload), isAuth:true, ...action.payload}
+        case UPDATE_SUCCESS:
+            return {...state, msg:'', redirectTo: getRedirectPath(action.payload), isAuth:true, ...action.payload}
         case ERROR_MSG:
             return {...state, msg:action.msg, isAuth:false,}
         default:
@@ -33,6 +36,10 @@ function registerSuccess(data) {
 
 function loginSuccess(data) {
     return {type: LOGIN_SUCCESS, payload: data}
+}
+
+function updateSuccess(data) {
+    return {type: UPDATE_SUCCESS, payload: data}
 }
 
 function errorMsg(msg) {
@@ -66,6 +73,18 @@ export function register({user, pwd, type}) {
         axios.post('/user/register', {user, pwd, type}).then(res=>{
             if (res.data.code === 0) {
                 dispatch(registerSuccess({user, pwd, type}))
+            } else {
+                dispatch(errorMsg(res.data.msg))
+            }
+        })
+    }
+}
+
+export function update(data) {
+    return dispatch => {
+        axios.post('/user/update', data).then(res=>{
+            if (res.data.code === 0) {
+                dispatch(updateSuccess(res.data.data))
             } else {
                 dispatch(errorMsg(res.data.msg))
             }

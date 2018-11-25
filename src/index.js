@@ -14,6 +14,8 @@ import {BrowserRouter, Route, Redirect, Switch} from 'react-router-dom';
 
 import Login from  './container/Login'
 import Register from './container/Register'
+import Bossinfo from './container/Bossinfo'
+import GeniusInfo from './container/GeniusInfo'
 import AuthRoute from "./component/AuthRoute";
 
 //google 调试用扩展
@@ -33,9 +35,13 @@ ReactDOM.render(
         <BrowserRouter>
             <div>
                 <AuthRoute/>
-                <Route path='/login' component={Login} ></Route>
-                <Route path='/register' component={Register} ></Route>
-                <Route path='/test' component={Test} ></Route>
+                <Switch>
+                    <Route path='/login' component={Login} ></Route>
+                    <Route path='/register' component={Register} ></Route>
+                    <Route path='/bossinfo' component={Bossinfo} ></Route>
+                    <Route path='/geniusinfo' component={GeniusInfo} ></Route>
+                    <Route path='/test' component={Test} ></Route>
+                </Switch>
             </div>
         </BrowserRouter>
     </Provider>), document.getElementById('root')

@@ -26,6 +26,24 @@ Router.post('/login', (req, res) => {
     })
 })
 
+Router.post('/update', (req, res) => {
+
+    const userId = req.cookies.userId
+    if (!userId) {
+        return res.json({code: 1})
+    }
+    const body = req.body
+    User.findByIdAndUpdate(userId, body, function (err, doc) {
+        const data = {
+            user: doc.user,
+            type: doc.type,
+            avatar: body.avatar
+        }
+        return res.json({code: 0, data: data})
+    })
+
+})
+
 Router.get('/info', (req, res) => {
     const {userId} = req.cookies
     if (!userId) {

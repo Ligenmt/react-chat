@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const URI = ''
+const URI = 'mongodb://chat:fetwcgxo1@120.25.244.188:20001/chat'
 
 mongoose.connect(URI)
 
