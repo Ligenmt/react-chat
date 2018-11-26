@@ -17,6 +17,7 @@ import Register from './container/Register'
 import Bossinfo from './container/Bossinfo'
 import GeniusInfo from './container/GeniusInfo'
 import AuthRoute from "./component/AuthRoute";
+import Dashboard from "./component/Dashboard";
 
 //google 调试用扩展
 const reduxDevtools = window.devToolsExtension ? window.devToolsExtension : ()=>{}
@@ -27,9 +28,10 @@ const store = createStore(reducers, compose(
 ))
 // console.log(store.getState())
 const Test = () => {
-    return <h2>Test页面</h2>
+    return <h2>Dashboard页面</h2>
 }
 //Provider在最外层传入store
+//Switch是只要命中一个就直接渲染，下面的不管
 ReactDOM.render(
     (<Provider store={store}>
         <BrowserRouter>
@@ -41,6 +43,7 @@ ReactDOM.render(
                     <Route path='/bossinfo' component={Bossinfo} ></Route>
                     <Route path='/geniusinfo' component={GeniusInfo} ></Route>
                     <Route path='/test' component={Test} ></Route>
+                    <Route component={Dashboard} ></Route>
                 </Switch>
             </div>
         </BrowserRouter>
