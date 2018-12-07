@@ -1,32 +1,25 @@
 import React, {Component} from 'react';
-import {NavBar} from 'antd-mobile'
-import {InputItem,WingBlank, WhiteSpace, Button, TextareaItem} from 'antd-mobile'
 import {connect} from 'react-redux'
-import {update} from '../../redux/user.redux'
-import {Redirect} from "react-router-dom";
+import {getUserList} from '../../redux/chatuser.redux'
+import {Card, WhiteSpace, WingBlank} from "antd-mobile";
+import UserCard from '../../component/UserCard'
 
 @connect(
-    state => state.user,
-    {update}
+    state => state.chatuser,
+    {getUserList}
 )
 class Genius extends Component {
 
     constructor(props) {
         super(props)
-        this.state = {
-            title: '',
-            company: '',
-            money: '',
-            desc: '',
-        }
+    }
+
+    componentDidMount() {
+        this.props.getUserList('boss')
     }
 
     render() {
-        return (
-            <div>
-                Genius
-            </div>
-        );
+        return <UserCard userlist={this.props.userlist}></UserCard>
     }
 }
 

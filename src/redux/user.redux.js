@@ -24,6 +24,8 @@ export function user(state=initState, action) {
             return {...state, msg:'', redirectTo: getRedirectPath(action.payload), isAuth:true, ...action.payload}
         case ERROR_MSG:
             return {...state, msg:action.msg, isAuth:false,}
+        case LOAD_DATA:
+            return {...state, ...action.payload}
         default:
             return state
     }
@@ -46,6 +48,7 @@ function errorMsg(msg) {
     return { msg, type: ERROR_MSG }
 }
 
+//载入用户信息
 export function loadData(data) {
     return {type: LOAD_DATA, payload: data}
 }
