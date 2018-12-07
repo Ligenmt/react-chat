@@ -36,13 +36,13 @@ class Register extends Component {
                     <WhiteSpace/>
                     <List>
                         <RadioItem
-                            checked={this.state.type == 'genius'}
+                            checked={this.state.type === 'genius'}
                             onChange={()=>this.handleChange('type', 'genius')}>
                             牛人
                         </RadioItem>
                         <RadioItem
                             onChange={()=>this.handleChange('type', 'boss')}
-                            checked={this.state.type == 'boss'}>老板</RadioItem>
+                            checked={this.state.type === 'boss'}>老板</RadioItem>
                     </List>
                     <WhiteSpace/>
                     <Button type='primary' onClick={this.handleRegister}>注册</Button>

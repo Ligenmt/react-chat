@@ -9,7 +9,7 @@ const models = {
         pwd: {type:String, require: true},
         type: {type:String, require: true},
         avatar: {type:String},
-        description: {type:String},
+        desc: {type:String},
         title: {type:String},
         //boss
         company: {type:String},

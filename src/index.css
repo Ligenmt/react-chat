@@ -1,3 +1,9 @@
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -6,9 +12,25 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  height: 100%;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+/*tar-bar固定在底部*/
+.am-tab-bar{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height:auto;
+}
+
+/*导航固定在顶部*/
+.fixd-header.am-navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index:99;
 }

@@ -5,7 +5,8 @@ const model = require('./model')
 const User = model.getModel('user')
 
 Router.get('/list', (req, res) => {
-    User.find({}, function (err, doc) {
+    const {type} = req.query
+    User.find({type}, function (err, doc) {
         return res.json(
             {
                 code: 0,
@@ -33,6 +34,7 @@ Router.post('/update', (req, res) => {
         return res.json({code: 1})
     }
     const body = req.body
+    console.log('update:', body)
     User.findByIdAndUpdate(userId, body, function (err, doc) {
         const data = {
             user: doc.user,

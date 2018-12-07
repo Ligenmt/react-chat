@@ -2,8 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import 'antd-mobile/dist/antd-mobile.css';
-import App from './component/App';
-// import * as serviceWorker from './serviceWorker';
 
 import reducers from './reducer'
 import './config'
