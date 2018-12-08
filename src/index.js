@@ -16,6 +16,7 @@ import Bossinfo from './container/Bossinfo'
 import GeniusInfo from './container/GeniusInfo'
 import AuthRoute from "./component/AuthRoute"
 import Dashboard from "./component/Dashboard"
+import Chat from './component/Chat'
 import Test from './container/Test'
 
 //google 调试用扩展
@@ -38,6 +39,7 @@ ReactDOM.render(
                     <Route path='/register' component={Register} ></Route>
                     <Route path='/bossinfo' component={Bossinfo} ></Route>
                     <Route path='/geniusinfo' component={GeniusInfo} ></Route>
+                    <Route path='/chat/:user' component={Chat} ></Route>
                     <Route path='/test' component={Test} ></Route>
                     <Route component={Dashboard} ></Route>
                 </Switch>
