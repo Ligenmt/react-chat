@@ -1,17 +1,17 @@
 import React, {Component} from 'react'
 import { NavBar } from 'antd-mobile'
 import NavLink from '../NavLink'
-import Boss from '../../container/Boss'
-import Genius from '../../container/Genius'
+import Boss from '../Boss'
+import Genius from '../Genius'
+import User from '../User'
 import {connect} from 'react-redux'
 import {BrowserRouter, Route, Redirect, Switch} from 'react-router-dom';
+
 
 function Msg() {
     return <h2>消息列表</h2>
 }
-function User() {
-    return <h2>个人中心</h2>
-}
+
 @connect(
     state => state
 )
@@ -62,7 +62,7 @@ class Dashboard extends Component {
                         ))}
                     </Switch>
                 </div>
-                <NavLink data={navList}/>
+                <NavLink className='fixd-bottom' data={navList}/>
             </div>
         );
     }

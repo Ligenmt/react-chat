@@ -17,6 +17,7 @@ Router.get('/list', (req, res) => {
 
 Router.post('/login', (req, res) => {
     const {user, pwd} = req.body
+    console.log('login', user, pwd)
     User.findOne({user: user, pwd: pwd}, {pwd: 0}, function (err, doc) {
         if (doc) {
             res.cookie('userId', doc['_id'])

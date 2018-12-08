@@ -6,6 +6,7 @@ const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
 const UPDATE_SUCCESS = 'UPDATE_SUCCESS'
 const ERROR_MSG = 'ERR_MSG'
 const LOAD_DATA = 'LOAD_DATA'
+const LOGOUT = 'LOGOUT'
 
 const initState = {
     isAuth: '',
@@ -26,6 +27,8 @@ export function user(state=initState, action) {
             return {...state, msg:action.msg, isAuth:false,}
         case LOAD_DATA:
             return {...state, ...action.payload}
+        case LOGOUT:
+            return {...initState, redirectTo: '/login'}
         default:
             return state
     }
@@ -51,6 +54,11 @@ function errorMsg(msg) {
 //载入用户信息
 export function loadData(data) {
     return {type: LOAD_DATA, payload: data}
+}
+
+
+export function logout() {
+    return {type: LOGOUT}
 }
 
 export function login({user, pwd}) {
@@ -94,3 +102,4 @@ export function update(data) {
         })
     }
 }
+
