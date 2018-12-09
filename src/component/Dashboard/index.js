@@ -6,6 +6,7 @@ import Genius from '../Genius'
 import User from '../User'
 import {connect} from 'react-redux'
 import {BrowserRouter, Route, Redirect, Switch} from 'react-router-dom';
+import {getMsgList, sendMsg, recvMsg} from '../../redux/chat.redux'
 
 
 function Msg() {
@@ -13,9 +14,15 @@ function Msg() {
 }
 
 @connect(
-    state => state
+    state => state,
+    {getMsgList, sendMsg, recvMsg}
 )
 class Dashboard extends Component {
+
+    componentDidMount() {
+        this.props.getMsgList()
+        this.props.recvMsg()
+    }
 
     render() {
         const pathname = this.props.location.pathname

@@ -20,7 +20,6 @@ import Chat from './component/Chat'
 import Test from './container/Test'
 
 //google 调试用扩展
-const reduxDevtools = window.devToolsExtension ? window.devToolsExtension : ()=>{}
 //初始化reducer状态
 const store = createStore(reducers, compose(
     applyMiddleware(thunk),

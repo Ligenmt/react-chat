@@ -1,8 +1,8 @@
 const express = require('express')
 const Router = express.Router()
 const model = require('./model')
-
 const User = model.getModel('user')
+const Chat = model.getModel('chat')
 
 Router.get('/list', (req, res) => {
     const {type} = req.query
@@ -57,7 +57,7 @@ Router.get('/info', (req, res) => {
             return res.json({code: 5})
         }
         if (doc) {
-            console.log("info", doc)
+            // console.log("info", doc)
             return res.json({code: 0, data: doc})
         }
     })
@@ -81,6 +81,26 @@ Router.post('/register', (req, res) => {
                 res.cookie('userId', doc['_id'])
                 return res.json({code: 0, data: doc})
             })
+        })
+    })
+
+})
+
+Router.get('/msglist', (req, res) => {
+    const {userId} = req.cookies
+    if (!userId) {
+        return res.json({code: 1})
+    }
+    User.find({}, function (err, userdoc) {
+        let users = {}
+        userdoc.forEach(v=>{
+            users[v._id] = {name:v.user, avatar:v.avatar}
+        })
+        Chat.find({"$or": [{from: userId}, {to: userId}]}, function (err, doc) {
+            if (err) {
+                return res.json({code: 5})
+            }
+            return res.json({code: 0, data: {msgs: doc, users: users}})
         })
     })
 

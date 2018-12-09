@@ -16,7 +16,12 @@ const models = {
         money: {type:String},
     },
     chat: {
-
+        chatid: {type: String, require: true},
+        from: {type: String, require: true},
+        to: {type: String, require: true},
+        content: {type: String, default: ''},
+        read: {type: Boolean, default: false},
+        create_time: {type: Date, default: new Date()},
     }
 }
 
