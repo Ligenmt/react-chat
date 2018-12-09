@@ -23,7 +23,7 @@ import Test from './container/Test'
 //初始化reducer状态
 const store = createStore(reducers, compose(
     applyMiddleware(thunk),
-    window.devToolsExtension ? window.devToolsExtension() : ()=>{}
+    // window.devToolsExtension ? window.devToolsExtension() : ()=>{}
 ))
 
 //Provider在最外层传入store
